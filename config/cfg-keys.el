@@ -62,6 +62,8 @@
 (bind-key "C-S-]" 'sp-down-sexp)
 (bind-key "C-}" 'sp-down-sexp)
 
+(bind-key "<home>" 'smart-beginning-of-line)
+
 ;;;; HELM
 (bind-key "M-x" #'helm-M-x)                                 ; run emacs command
 (bind-key "C-x C-f" #'helm-find-files)                      ; open file
