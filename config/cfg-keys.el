@@ -24,6 +24,7 @@
 (unbind-key (kbd "C-8"))
 (unbind-key (kbd "C-9"))
 (unbind-key (kbd "C-0"))
+(unbind-key (kbd "M-<down-mouse-1>"))
 
 ;;;; FUNCTION KEYS
 (bind-key "<f1>" #'treemacs)                                ; toggle treemacs file tree display
@@ -61,6 +62,30 @@
 (bind-key "C-{" 'sp-backward-up-sexp)
 (bind-key "C-S-]" 'sp-down-sexp)
 (bind-key "C-}" 'sp-down-sexp)
+
+;;;; MULTIPLE CURSORS
+(define-key mc/keymap (kbd "<return>") nil)
+(bind-key "M-<mouse-1>" 'mc/add-cursor-on-click)
+
+(bind-key "C-c m d" 'mc/edit-lines)
+(bind-key "C-c m b" 'mc/edit-beginnings-of-lines)
+(bind-key "C-c m e" 'mc/edit-ends-of-lines)
+
+(bind-key "C-c m 1" 'mc/insert-numbers)
+(bind-key "C-c m a" 'mc/insert-letters)
+
+(bind-key "C-c m ," 'mc/mark-previous-like-this)
+(bind-key "C-c m ." 'mc/mark-next-like-this)
+
+(bind-key "C-c m <" 'mc/unmark-previous-like-this)
+(bind-key "C-c m >" 'mc/unmark-next-like-this)
+
+(bind-key "C-c m l" 'mc/mark-all-dwim)
+(bind-key "C-c m L" 'mc/mark-all-like-this)
+(bind-key "C-c m x" 'mc/mark-more-like-this-extend)
+
+(bind-key "C-c m s" 'mc/sort-regions)
+(bind-key "C-c m r" 'mc/reverse-regions)
 
 (bind-key "<home>" 'smart-beginning-of-line)
 

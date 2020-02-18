@@ -89,5 +89,7 @@
   :config
   (setf uniquify-buffer-name-style 'forward))
 
+(use-package multiple-cursors)
+
 (provide 'cfg-basics)
 ;;; cfg-basics.el ends here
