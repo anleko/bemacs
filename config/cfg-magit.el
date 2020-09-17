@@ -54,9 +54,13 @@
 	  magit-insert-modules-unpushed-to-upstream
 	  magit-insert-modules-unpushed-to-pushremote
 	  magit-insert-recent-commits))
-
-  (add-hook 'after-save-hook 'magit-after-save-refresh-status)
   (setf magit-save-repository-buffers 'dontask)
+  (defun my-git-commit-hook-fn ()
+    (setq-local git-commit-summary-max-length 50)
+    (setq-local fill-column 72))
+  :hook
+  ((git-commit-setup . git-commit-turn-on-flyspell)
+   (git-commit-mode . my-git-commit-hook-fn))
   )
 
 (use-package magit-imerge)

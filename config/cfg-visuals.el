@@ -9,6 +9,7 @@
 (global-hl-line-mode 1)
 (make-variable-buffer-local 'global-hl-line-mode)
 (blink-cursor-mode 0)
+(setq-default cursor-type 'bar)
 (setq-default cursor-in-non-selected-windows nil)
 
 (setf scroll-margin 2)
@@ -50,7 +51,12 @@
   (rainbow-delimiters-depth-7-face ((t (:foreground "indian red"))))
   (rainbow-delimiters-depth-8-face ((t (:foreground "navajo white"))))
   (rainbow-delimiters-depth-9-face ((t (:foreground "dodger blue"))))
-  :hook ((prog-mode lisp-mode sly-mrepl) . rainbow-delimiters-mode))
+  :hook ((prog-mode lisp-mode sly-mrepl) . rainbow-delimiters-mode)
+  :config
+  (setq rainbow-identifiers-cie-l*a*b*-saturation 80)
+  (setq rainbow-identifiers-cie-l*a*b*-lightness 80)
+  (setq rainbow-identifiers-cie-l*a*b*-color-count 255)
+)
 
 
 (use-package rainbow-identifiers
@@ -59,11 +65,14 @@
   (setq-default rainbow-identifiers-choose-face-function 'rainbow-identifiers-cie-l*a*b*-choose-face)
   (setq-default rainbow-identifiers-cie-l*a*b*-lightness 60))
 
-(use-package rainbow-mode
-  :blackout
-  :config
-  ;;(add-hook 'prog-mode-hook 'rainbow-mode)
-  )
+;(use-package rainbow-mode
+;  :blackout
+;  :config
+;  ;;(add-hook 'prog-mode-hook 'rainbow-mode)
+;  )
+
+(use-package prism
+  :straight (:host github :repo "alphapapa/prism.el"))
 
 (use-package visible-mark)
 
@@ -92,11 +101,17 @@
   (setq centaur-tabs-set-bar 'under)
   (setq x-underline-at-descent-line t)
   (setq centaur-tabs-set-modified-marker t)
-  (setq centaur-tabs-show-navigation-buttons t)
+  (setq centaur-tabs-show-navigation-buttons nil)
   (centaur-tabs-group-buffer-groups)
 
   ; the line below includes magit buffers etc. in the group
   (centaur-tabs-group-by-projectile-project)
+
+  (centaur-tabs-enable-buffer-reordering)
+  ;; When the currently selected tab(A) is at the right of the last visited
+  ;; tab(B), move A to the right of B. When the currently selected tab(A) is
+  ;; at the left of the last visited tab(B), move A to the left of B
+  (setq centaur-tabs-adjust-buffer-order t)
 
   :hook
   (dired-mode . centaur-tabs-local-mode)
@@ -105,13 +120,36 @@
 
 (setq linum-delay t)
 
+(use-package linum-off)
+(require 'linum-off)
+(setq linum-disabled-modes-list
+      '(eshell-mode wl-summary-mode compilation-mode org-mode text-mode dired-mode pdf-view-mode))
+
+(add-to-list 'linum-disabled-modes-list 'swiper-helm-mode)
+(add-to-list 'linum-disabled-modes-list 'helm-mode)
+(add-to-list 'linum-disabled-modes-list 'swiper-mode)
+
+(global-linum-mode t)
+
+(use-package helm-swoop
+  :config
+  (setq helm-swoop-use-line-number-face t)
+  (setq helm-swoop-use-fuzzy-match t)
+)
+
 (use-package powerline)
 (require 'powerline)
 (use-package moe-theme)
 (powerline-moe-theme)
 (moe-dark)
-(moe-theme-set-color 'b/w)
+(moe-theme-set-color 'orange)
 ;;(moe-theme-random-color)
+(which-function-mode)
+
+(setq-default minimap-minimum-width 30)
+(setq-default minimap-width-fraction 0.1)
+(setq-default minimap-update-delay 2)
+(setq-default minimap-window-location 'right)
 
 (provide 'cfg-visuals)
 ;;; cfg-visuals.el ends here

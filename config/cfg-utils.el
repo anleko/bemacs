@@ -64,5 +64,10 @@ If point was already at that position, move point to beginning of line."
          (beginning-of-line)))
 )
 
+(use-package helm-tramp
+  :config
+  (setq helm-tramp-custom-connections '(/ssh:kandko@eden.test.westermo.com:/home/kandko/))
+)
+
 (provide 'cfg-utils)
 ;;; cfg-utils.el ends here

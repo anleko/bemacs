@@ -8,11 +8,13 @@
     (let* ((root (projectile-project-root dir)))
       (and root (cons 'transient root))))
   :config
-  (setf projectile-git-command "fd . -0")
+  (setf projectile-git-command "fd . -0 --no-ignore-vcs")
   (setf projectile-generic-command "fd . -0")
   (setf projectile-enable-caching t)
   (setf projectile-switch-project-action 'projectile-dired)
+  (setf projectile-indexing-method 'alien)
   (setf projectile-keymap-prefix (kbd "M-p"))
+  (setf projectile-mode-line-prefix " p")
 ;;  (setf projectile-switch-project-action
 ;;        #'projectile-commander)
   (setf projectile-project-root-files-top-down-recurring

@@ -25,6 +25,12 @@
 (setq-default c-basic-offset 8)
 (setq-default indent-tabs-mode t)
 
+(setq-default bidi-inhibit-bpa 1)
+
+(delete-selection-mode 1)
+
+(setq-default superword-mode 1)
+
 (use-package general) ;; allows better "bind-key" form
 
 (use-package smartparens
@@ -43,12 +49,24 @@
 
 (use-package blackout
   :straight (:host github :repo "raxod502/blackout")
+  :demand t
+  :after (helm company)
   :config
   (blackout 'eldoc-mode)
   (blackout 'abbrev-mode)
-  (blackout 'helm-mode)
+  (blackout 'auto-revert-mode)
+  (blackout 'global-auto-revert-mode)
+  (blackout 'global-auto-revert-mode)
+  (blackout 'global-auto-revert-mode-text)
+  (blackout 'auto-revert-tail-mode)
+  (blackout 'auto-revert-tail-mode-text)
+  (blackout 'auto-revert-mode)
+  (blackout 'auto-revert-mode-text)
   (blackout 'company-mode)
   (blackout 'git-gutter-mode)
+  (blackout 'helm-mode)
+  (blackout 'smartparens-mode)
+  (blackout 'which-key-mode)
   )
 
 (use-package recentf
@@ -59,7 +77,6 @@
   (recentf-mode 1))
 
 (use-package which-key
-  :blackout
   :config
   (which-key-mode)
   (which-key-setup-side-window-bottom)
@@ -90,6 +107,17 @@
   (setf uniquify-buffer-name-style 'forward))
 
 (use-package multiple-cursors)
+
+(use-package dumb-jump)
+
+(use-package yaml-mode
+  :config
+   (add-hook 'yaml-mode-hook
+    '(lambda ()
+       (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+)
+
+(use-package json-mode)
 
 (provide 'cfg-basics)
 ;;; cfg-basics.el ends here

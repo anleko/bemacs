@@ -14,7 +14,7 @@
   (setq-default lsp-enable-indentation nil)
   (setq-default lsp-enable-on-type-formatting nil)
   (setq-default lsp-enable-text-document-color 1)
-  (setq-default lsp-enable-links t)
+  (setq-default lsp-enable-links nil)
   (setq-default lsp-enable-folding nil)
   (setq-default lsp-enable-semantic-highlighting nil)
   )

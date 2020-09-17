@@ -69,6 +69,7 @@
 (measure-time (my-load "cfg-company"))
 (measure-time (my-load "cfg-magit"))
 (measure-time (my-load "cfg-utils"))
+(measure-time (my-load "cfg-bookmarks.el"))
 
 (measure-time (my-load custom-file))
 
