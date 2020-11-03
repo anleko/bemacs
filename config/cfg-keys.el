@@ -121,6 +121,8 @@
 
 (bind-key "M-p" 'projectile-command-map)
 
+(bind-key "C-x ." 'helm-imenu)
+
 ;;;; MISC SOURCE CONTROL
 (bind-key "C-c b" 'git-messenger:popup-message)             ; show commit that changed line under cursor
 (bind-key "C-c t" 'git-timemachine)                         ; jump between previous revisions of current file

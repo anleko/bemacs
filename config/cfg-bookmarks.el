@@ -68,6 +68,6 @@
   :ensure t
   :demand t
   :config
-  (global-set-key (kbd "C-c o") 'helm-bm)
-  (global-set-key (kbd "C-c F2") 'helm-bm)
+  (global-set-key (kbd "C-x b") 'helm-bm)
+  (global-set-key (kbd "C-x F2") 'helm-bm)
 )
